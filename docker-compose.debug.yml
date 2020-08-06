@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  backend-express:
+    image: backend-express
+    build: ./backend-express
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: "mysql://admin:password@db:3306/knitto"
+    ports:
+      - 3000
+      - 9229:9229
+    ## set your startup file here
+    command: node --inspect=0.0.0.0:9229 bin/www
+    networks:
+      - primary
+
+  db:
+    container_name: db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: knitto
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    networks:
+      - primary
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - "8080"
+    networks:
+      - primary
+
+networks: 
+  primary:

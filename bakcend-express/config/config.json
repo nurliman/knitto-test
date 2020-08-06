@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "knitto",
+    "password": "password",
+    "database": "knitto",
+    "host": "db",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "knitto",
+    "password": "password",
+    "database": "knitto",
+    "host": "db",
+    "dialect": "mysql"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "mysql"
+  }
+}
