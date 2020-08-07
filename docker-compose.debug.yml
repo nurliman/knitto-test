@@ -2,18 +2,20 @@ version: '3.4'
 
 services:
   backend-express:
+    container_name: backend-express
     image: backend-express
-    build: ./backend-express
+    build: 
+      context: ./backend-express
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       DATABASE_URL: "mysql://admin:password@db:3306/knitto"
     ports:
-      - 3000
+      - 3000:3000
       - 9229:9229
     ## set your startup file here
-    command: node --inspect=0.0.0.0:9229 bin/www
     networks:
       - primary
+    command: ["./wait-for-it.sh","db:3306","--timeout=0","--","yarn","dev"]
 
   db:
     container_name: db
@@ -23,6 +25,7 @@ services:
       MYSQL_DATABASE: knitto
       MYSQL_USER: admin
       MYSQL_PASSWORD: password
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     networks:
       - primary
 
@@ -31,7 +34,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - "8080"
+      - "8080:8080"
     networks:
       - primary
 

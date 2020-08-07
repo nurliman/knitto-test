@@ -16,10 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   Karyawan.init({
     nama: DataTypes.STRING,
     jabatan: DataTypes.STRING,
-    jabatan: DataTypes.STRING,
     tanggal_masuk: DataTypes.DATE
   }, {
     sequelize,
+    underscored: true,
+    freezeTableName: true,
     modelName: 'Karyawan',
   });
   return Karyawan;

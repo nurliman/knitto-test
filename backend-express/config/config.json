@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "knitto",
+    "username": "admin",
     "password": "password",
     "database": "knitto",
     "host": "db",
