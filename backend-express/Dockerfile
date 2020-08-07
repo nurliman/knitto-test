@@ -3,7 +3,7 @@ ENV NODE_ENV production
 RUN apk add --no-cache --upgrade bash
 WORKDIR /usr/src/app
 COPY ["package.json", "yarn.lock", "./"]
-RUN yarn install
+RUN yarn install --prod --pure-lockfile
 COPY . .
 RUN yarn global add sequelize-cli
 EXPOSE 3000
