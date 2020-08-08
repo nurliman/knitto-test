@@ -1,10 +1,12 @@
 import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
+import Karyawan from "./components/Karyawan";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Router>
       <div className="main-container">
@@ -12,11 +14,11 @@ function App() {
           <Route path="/" exact>
             Home
           </Route>
-          <Route path="/karyawan">Karyawan</Route>
+          <Route path="/karyawan" component={Karyawan} />
         </Switch>
       </div>
     </Router>
   );
-}
+};
 
 export default App;
