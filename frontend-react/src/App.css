@@ -1,0 +1,12 @@
+.main-container {
+    height: 100%;
+    width: 100%;
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%); 
+    color: white;
+    padding-top: 6%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-family: "Segoe UI";
+}
