@@ -9,7 +9,7 @@ export interface Karyawan {
     data: Karyawan[];
   }
   
-  export const CREATE_KARYAWAN = "CREATE_KARYAWAN";
+  export const CREATE_KARYAWAN = "@karyawan/CREATE_KARYAWAN";
   
   interface CreateKaryawanRequest {
     type: typeof CREATE_KARYAWAN;
