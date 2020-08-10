@@ -1,5 +1,11 @@
-import { KaryawanActionsTypes, KaryawanListType, IKaryawan, CREATE_KARYAWAN, SET_KARYAWAN_LIST } from "./types";
-import axios from 'axios';
+import {
+  KaryawanActionsTypes,
+  KaryawanListType,
+  IKaryawan,
+  CREATE_KARYAWAN,
+  SET_KARYAWAN_LIST,
+} from "./types";
+import axios from "axios";
 import { Dispatch, AnyAction } from "redux";
 
 import { RootState } from "../rootReducer";
@@ -7,26 +13,29 @@ import { RootState } from "../rootReducer";
 export function createKaryawan(karyawan: IKaryawan): KaryawanActionsTypes {
   return {
     type: CREATE_KARYAWAN,
-    payload: { karyawan }
+    payload: { karyawan },
   };
 }
 
-export function setKaryawanList(karyawanList: KaryawanListType): KaryawanActionsTypes {
+export function setKaryawanList(
+  karyawanList: KaryawanListType
+): KaryawanActionsTypes {
   return {
     type: SET_KARYAWAN_LIST,
-    payload: { karyawanList }
-  }
-};
+    payload: { karyawanList },
+  };
+}
 
-export const loadKaryawan = (callback:Function) => {
+export const loadKaryawan = (callback: Function) => {
   return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
-    axios.get("http://localhost/api/karyawan", { timeout: 5000 })
-      .then(response => {
+    axios
+      .get("http://localhost/api/karyawan", { timeout: 5000 })
+      .then((response) => {
         dispatch(
           setKaryawanList([...getState().karyawan.data, ...response.data])
         );
       })
-      .catch(err => console.error(err))
-      .finally(()=>callback())
+      .catch((err) => console.error(err))
+      .finally(() => callback());
   };
 };
