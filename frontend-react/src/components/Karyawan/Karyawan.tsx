@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Spinner, Row, Col } from "react-bootstrap";
+import { Container, Spinner, Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../store/modules/rootReducer";
@@ -40,6 +40,7 @@ const Karyawan: React.FC = () => {
       </Row>
       <Row className="karyawan__item">
         <Col>
+          <Button className="mr-2" variant="primary">Print</Button>
           <AddKaryawanButton />
         </Col>
       </Row>
