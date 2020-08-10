@@ -58,6 +58,8 @@ services:
       context: ./frontend-react
     volumes:
       - html:/usr/src/app/build
+    networks:
+      - primary
     depends_on:
       - nginx
 

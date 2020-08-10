@@ -26,14 +26,32 @@ export function setKaryawanList(
   };
 }
 
-export const addKaryawan = (karyawan: IKaryawan, callback: Function) => {
-  return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {};
+export const addKaryawan = (karyawan: IKaryawan, callback?: Function) => {
+  return (dispatch: Dispatch<AnyAction>) => {
+    axios
+      .post(
+        "/api/karyawan",
+        {
+          nama: karyawan.nama,
+          jabatan: karyawan.jabatan,
+          tanggal_masuk: karyawan.tanggal_masuk,
+        },
+        { timeout: 5000 }
+      )
+      .then((response) => {
+        const newKaryawan: IKaryawan = karyawan;
+        newKaryawan.id = response.data.id;
+        dispatch(createKaryawan(newKaryawan));
+      })
+      .catch((err) => console.error(err))
+      .finally(() => callback?callback():null);
+  };
 };
 
 export const loadKaryawan = (callback: Function) => {
   return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
     axios
-      .get("http://localhost/api/karyawan", { timeout: 5000 })
+      .get("/api/karyawan", { timeout: 5000 })
       .then((response) => {
         dispatch(
           setKaryawanList([...getState().karyawan.data, ...response.data])
