@@ -1,13 +1,13 @@
-import { KaryawanState, KaryawanActionsTypes, CREATE_KARYAWAN } from "./types";
+import { IKaryawanState, KaryawanActionsTypes, CREATE_KARYAWAN } from "./types";
 
-const initialState: KaryawanState = {
+const initialState: IKaryawanState = {
   data: []
 };
 
 export default function karyawanReducer(
   state = initialState,
   action: KaryawanActionsTypes
-): KaryawanState {
+): IKaryawanState {
   switch (action.type) {
     case CREATE_KARYAWAN:
       return {

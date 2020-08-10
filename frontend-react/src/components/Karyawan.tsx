@@ -1,41 +1,74 @@
-import React, { useState } from "react";
-import { Table, Container } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Table, Container, Spinner } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import axios from 'axios';
+
+import { RootState } from "../store/modules/rootReducer";
+import { IKaryawan, KaryawanListType } from "../store/modules/karyawan/types";
+import { setKaryawanList } from "../store/modules/karyawan/actions";
+
+
+const KaryawanItem: React.FC<{ karyawan: IKaryawan }> = ({ karyawan }) => {
+  return (
+    <tr>
+      <td>{karyawan.id}</td>
+      <td>{karyawan.nama}</td>
+      <td>{karyawan.jabatan}</td>
+      <td>{karyawan.tanggal_masuk}</td>
+    </tr>
+  )
+}
+
+
+const KaryawanTable: React.FC<{ karyawanList: KaryawanListType }> = ({ karyawanList }) => {
+  return (
+    <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nama</th>
+          <th>Jabatan</th>
+          <th>Tanggal Masuk</th>
+        </tr>
+      </thead>
+      <tbody>
+        {karyawanList.map(karyawan => (
+          <KaryawanItem karyawan={karyawan} />
+        ))}
+      </tbody>
+    </Table>
+  )
+}
+
 
 const Karyawan: React.FC = () => {
-  const [listKaryawan, setListKaryawan] = useState([]);
+  const dispatch = useDispatch();
+  const karyawanList = useSelector((state: RootState) => state.karyawan.data);
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    axios.get("http://backend-express:3000/api/karyawan", { timeout: 5000 })
+      .then(response => {
+        dispatch(
+          setKaryawanList([...karyawanList, ...response.data])
+        );
+      })
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false))
+  }, [karyawanList, dispatch])
+
   return (
     <Container className="karyawan-container">
       <h1 className="karyawan-header">Karyawan</h1>
       <div className="karyawan-body">
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan={2}>Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </Table>
+        {
+          loading === true
+            ? <Spinner animation="border" />
+            : karyawanList.length !== 0
+              ? <KaryawanTable karyawanList={karyawanList} />
+              : <h5>Karyawan Tidak Ditemukan</h5>
+        }
       </div>
     </Container>
   );
