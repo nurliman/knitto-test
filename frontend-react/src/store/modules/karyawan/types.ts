@@ -1,5 +1,3 @@
-import Karyawan from "../../../components/Karyawan";
-
 export interface IKaryawan {
   id: number;
   nama: string;
