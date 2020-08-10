@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.7'
 
 services:
   backend-express:
@@ -49,6 +49,7 @@ services:
     networks:
       - primary
     depends_on:
+      - "frontend-react"
       - "backend-express"
       - adminer
 
@@ -60,8 +61,6 @@ services:
       - html:/usr/src/app/build
     networks:
       - primary
-    depends_on:
-      - nginx
 
 networks: 
   primary:
