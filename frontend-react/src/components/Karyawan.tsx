@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { RootState } from "../store/modules/rootReducer";
 import { IKaryawan, KaryawanListType } from "../store/modules/karyawan/types";
-import { setKaryawanList } from "../store/modules/karyawan/actions";
+import { loadKaryawan } from "../store/modules/karyawan/actions";
 
 
 const KaryawanItem: React.FC<{ karyawan: IKaryawan }> = ({ karyawan }) => {
@@ -48,14 +48,7 @@ const Karyawan: React.FC = () => {
 
   useEffect(() => {
     setLoading(true)
-    axios.get("http://backend-express:3000/api/karyawan", { timeout: 5000 })
-      .then(response => {
-        dispatch(
-          setKaryawanList([...karyawanList, ...response.data])
-        );
-      })
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false))
+    dispatch(loadKaryawan(() => setLoading(false)))
   }, [karyawanList, dispatch])
 
   return (
