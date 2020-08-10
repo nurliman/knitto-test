@@ -26,6 +26,10 @@ export function setKaryawanList(
   };
 }
 
+export const addKaryawan = (karyawan: IKaryawan, callback: Function) => {
+  return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {};
+};
+
 export const loadKaryawan = (callback: Function) => {
   return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
     axios
