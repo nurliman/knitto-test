@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Container, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import axios from 'axios';
 
 import { RootState } from "../store/modules/rootReducer";
 import { IKaryawan, KaryawanListType } from "../store/modules/karyawan/types";
