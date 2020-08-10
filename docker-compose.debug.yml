@@ -45,11 +45,24 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - html:/usr/share/nginx/html
     networks:
       - primary
     depends_on:
       - "backend-express"
       - adminer
 
+  frontend-react:
+    container_name: frontend-react
+    build: 
+      context: ./frontend-react
+    volumes:
+      - html:/usr/src/app/build
+    depends_on:
+      - nginx
+
 networks: 
   primary:
+
+volumes:
+  html:

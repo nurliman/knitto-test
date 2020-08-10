@@ -20,7 +20,7 @@ export function setKaryawanList(karyawanList: KaryawanListType): KaryawanActions
 
 export const loadKaryawan = (callback:Function) => {
   return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
-    axios.get("http://backend-express:3000/api/karyawan", { timeout: 5000 })
+    axios.get("http://localhost/api/karyawan", { timeout: 5000 })
       .then(response => {
         dispatch(
           setKaryawanList([...getState().karyawan.data, ...response.data])
