@@ -19,7 +19,7 @@ const KaryawanTable: React.FC<{ karyawanList: KaryawanListType }> = ({
       </thead>
       <tbody>
         {karyawanList.map((karyawan) => (
-          <KaryawanItem karyawan={karyawan} />
+          <KaryawanItem key={karyawan.id} karyawan={karyawan} />
         ))}
       </tbody>
     </Table>

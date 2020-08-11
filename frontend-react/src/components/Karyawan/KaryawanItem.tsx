@@ -7,7 +7,7 @@ const KaryawanItem: React.FC<{ karyawan: IKaryawan }> = ({ karyawan }) => {
       <td>{karyawan.id}</td>
       <td>{karyawan.nama}</td>
       <td>{karyawan.jabatan}</td>
-      <td>{karyawan.tanggal_masuk}</td>
+      <td>{new Date(karyawan.tanggal_masuk).toLocaleDateString()}</td>
     </tr>
   );
 };

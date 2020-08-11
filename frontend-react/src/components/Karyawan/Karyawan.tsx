@@ -16,7 +16,7 @@ const Karyawan: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     dispatch(loadKaryawan(() => setLoading(false)));
-  }, [karyawanList, dispatch]);
+  }, [dispatch]);
 
   return (
     <Container className="karyawan">

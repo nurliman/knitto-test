@@ -7,8 +7,6 @@ const AddKaryawanForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
   setValues,
 }) => {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === "tanggal_masuk"){ 
-      console.log(e.target.value);}
     setValues({
       ...form,
       [e.target.name]: e.target.value,

@@ -30,7 +30,7 @@ export const addKaryawan = (karyawan: IKaryawan, callback?: Function) => {
   return (dispatch: Dispatch<AnyAction>) => {
     axios
       .post(
-        "/api/karyawan",
+        "http://localhost/api/karyawan",
         {
           nama: karyawan.nama,
           jabatan: karyawan.jabatan,
@@ -41,6 +41,7 @@ export const addKaryawan = (karyawan: IKaryawan, callback?: Function) => {
       .then((response) => {
         const newKaryawan: IKaryawan = karyawan;
         newKaryawan.id = response.data.id;
+        newKaryawan.tanggal_masuk = response.data.tanggal_masuk;
         dispatch(createKaryawan(newKaryawan));
       })
       .catch((err) => console.error(err))
@@ -51,7 +52,7 @@ export const addKaryawan = (karyawan: IKaryawan, callback?: Function) => {
 export const loadKaryawan = (callback: Function) => {
   return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
     axios
-      .get("/api/karyawan", { timeout: 5000 })
+      .get("http://localhost/api/karyawan", { timeout: 5000 })
       .then((response) => {
         dispatch(
           setKaryawanList([...getState().karyawan.data, ...response.data])
