@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Spinner, Row, Col, Button } from "react-bootstrap";
+import { Spinner, Row, Col, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../store/modules/rootReducer";
@@ -28,7 +28,7 @@ const Karyawan: React.FC = () => {
       </Row>
       <Row className="karyawan__item">
         <Col>
-          <KaryawanFilterByDate />
+          <KaryawanFilterByDate setLoading={setLoading} />
         </Col>
       </Row>
       <Row className="karyawan__item">
@@ -39,14 +39,16 @@ const Karyawan: React.FC = () => {
             ) : karyawanList.length !== 0 ? (
               <KaryawanTable karyawanList={karyawanList} />
             ) : (
-                  <h5>Karyawan Tidak Ditemukan</h5>
-                )}
+              <h5>Karyawan Tidak Ditemukan</h5>
+            )}
           </div>
         </Col>
       </Row>
       <Row className="karyawan__item">
         <Col>
-          <Button className="mr-2" variant="primary">Print</Button>
+          <Button className="mr-2" variant="primary">
+            Print
+          </Button>
           <AddKaryawanButton />
         </Col>
       </Row>

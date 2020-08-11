@@ -1,20 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { IKaryawan } from "../../store/modules/karyawan/types";
-
-function formatDate(date:Date):string {
-  var d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-
-  if (month.length < 2) 
-      month = '0' + month;
-  if (day.length < 2) 
-      day = '0' + day;
-
-  return [year, month, day].join('-');
-}
+import { formatDate } from "../../helpers";
 
 const AddKaryawanForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
   form,
@@ -64,3 +51,4 @@ const AddKaryawanForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
 };
 
 export default AddKaryawanForm;
+

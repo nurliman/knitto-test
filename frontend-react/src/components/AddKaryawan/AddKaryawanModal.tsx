@@ -21,11 +21,18 @@ const AddKaryawanModal: React.FC<{ onHide: Function; show: boolean }> = (
   const handleSubmit = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (!loading) {
       setLoading(true);
-      dispatch(addKaryawan(form, () => {
-        setLoading(false)
-        setValues({ id: 0, nama: "", jabatan: "", tanggal_masuk: new Date() })
-        props.onHide()
-      }));
+      dispatch(
+        addKaryawan(form, () => {
+          setLoading(false);
+          setValues({
+            id: 0,
+            nama: "",
+            jabatan: "",
+            tanggal_masuk: new Date(),
+          });
+          props.onHide();
+        })
+      );
     }
   };
 
@@ -52,14 +59,14 @@ const AddKaryawanModal: React.FC<{ onHide: Function; show: boolean }> = (
           {!loading ? (
             "Submit"
           ) : (
-              <Spinner
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-            )}
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+          )}
         </Button>
       </Modal.Footer>
     </Modal>

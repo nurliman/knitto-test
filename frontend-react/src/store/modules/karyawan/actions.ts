@@ -1,14 +1,18 @@
 import {
+  FilterDate,
   KaryawanActionsTypes,
   KaryawanListType,
   IKaryawan,
   CREATE_KARYAWAN,
   SET_KARYAWAN_LIST,
+  SET_FILTER_DATE,
 } from "./types";
 import axios from "axios";
 import { Dispatch, AnyAction } from "redux";
 
 import { RootState } from "../rootReducer";
+
+import { formatDate } from "../../../helpers";
 
 export function createKaryawan(karyawan: IKaryawan): KaryawanActionsTypes {
   return {
@@ -23,6 +27,15 @@ export function setKaryawanList(
   return {
     type: SET_KARYAWAN_LIST,
     payload: { karyawanList },
+  };
+}
+
+export function setFilterDate(filterDate: FilterDate): KaryawanActionsTypes {
+  if (!filterDate.start) filterDate.start = new Date(0)
+  if (!filterDate.end) filterDate.end = new Date()
+  return {
+    type: SET_FILTER_DATE,
+    payload: { filterDate },
   };
 }
 
@@ -45,18 +58,24 @@ export const addKaryawan = (karyawan: IKaryawan, callback?: Function) => {
         dispatch(createKaryawan(newKaryawan));
       })
       .catch((err) => console.error(err))
-      .finally(() => callback?callback():null);
+      .finally(() => (callback ? callback() : null));
   };
 };
 
-export const loadKaryawan = (callback: Function) => {
+export const loadKaryawan = (callback: Function, start?: Date, end?: Date) => {
   return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
+    let url: string = "http://localhost/api/karyawan";
+
+    url += "?start=" + formatDate(getState().karyawan.filter.start);
+    url += "&end=" + formatDate(getState().karyawan.filter.end);
+
     axios
-      .get("http://localhost/api/karyawan", { timeout: 5000 })
+      .get(url, { timeout: 5000 })
       .then((response) => {
-        dispatch(
-          setKaryawanList([...getState().karyawan.data, ...response.data])
+        response.data.sort((a: IKaryawan, b: IKaryawan) =>
+          a.id > b.id ? 1 : b.id > a.id ? -1 : 0
         );
+        dispatch(setKaryawanList(response.data));
       })
       .catch((err) => console.error(err))
       .finally(() => callback());
