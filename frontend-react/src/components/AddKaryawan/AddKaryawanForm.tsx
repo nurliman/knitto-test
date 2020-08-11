@@ -2,6 +2,20 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import { IKaryawan } from "../../store/modules/karyawan/types";
 
+function formatDate(date:Date):string {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('-');
+}
+
 const AddKaryawanForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
   form,
   setValues,
@@ -40,8 +54,9 @@ const AddKaryawanForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
         <Form.Control
           name="tanggal_masuk"
           type="date"
+          placeholder="dd-mm-yyyy"
           onChange={onChange}
-          value={form.tanggal_masuk.toString()}
+          value={formatDate(form.tanggal_masuk)}
         />
       </Form.Group>
     </Form>

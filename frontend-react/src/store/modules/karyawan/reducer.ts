@@ -20,6 +20,7 @@ export default function karyawanReducer(
       };
 
     case SET_KARYAWAN_LIST:
+      action.payload.karyawanList.sort((a, b) => (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0));
       return {
         data: action.payload.karyawanList,
       };
