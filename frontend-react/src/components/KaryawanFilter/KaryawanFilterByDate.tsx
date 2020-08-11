@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState,useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 
+import { RootState } from "../../store/modules/rootReducer";
 import {
   loadKaryawan,
   setFilterDate,
@@ -25,7 +26,12 @@ const KaryawanFilterByDate: React.FC<{ setLoading: Function }> = ({
     });
   };
 
+  const filterDateState = useSelector((state: RootState) => state.karyawan.filter);
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    setDates(filterDateState)
+  },[filterDateState])
 
   const onApply = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setLoading(true);

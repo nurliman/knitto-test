@@ -9,7 +9,7 @@ import {
 const initialState: IKaryawanState = {
   data: [],
   filter: {
-    start: new Date(0),
+    start: new Date("2020/8/1"),
     end: new Date(),
   },
 };

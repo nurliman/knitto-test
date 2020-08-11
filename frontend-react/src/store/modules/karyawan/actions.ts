@@ -31,8 +31,8 @@ export function setKaryawanList(
 }
 
 export function setFilterDate(filterDate: FilterDate): KaryawanActionsTypes {
-  if (!filterDate.start) filterDate.start = new Date(0)
-  if (!filterDate.end) filterDate.end = new Date()
+  if (!filterDate.start) filterDate.start = new Date(0);
+  if (!filterDate.end) filterDate.end = new Date();
   return {
     type: SET_FILTER_DATE,
     payload: { filterDate },
@@ -56,13 +56,20 @@ export const addKaryawan = (karyawan: IKaryawan, callback?: Function) => {
         newKaryawan.id = response.data.id;
         newKaryawan.tanggal_masuk = response.data.tanggal_masuk;
         dispatch(createKaryawan(newKaryawan));
+        dispatch(
+          setFilterDate({
+            start: newKaryawan.tanggal_masuk,
+            end: newKaryawan.tanggal_masuk,
+          })
+        );
+        return loadKaryawan();
       })
       .catch((err) => console.error(err))
       .finally(() => (callback ? callback() : null));
   };
 };
 
-export const loadKaryawan = (callback: Function, start?: Date, end?: Date) => {
+export const loadKaryawan = (callback?: Function, start?: Date, end?: Date) => {
   return (dispatch: Dispatch<AnyAction>, getState: () => RootState) => {
     let url: string = "http://localhost/api/karyawan";
 
@@ -78,6 +85,6 @@ export const loadKaryawan = (callback: Function, start?: Date, end?: Date) => {
         dispatch(setKaryawanList(response.data));
       })
       .catch((err) => console.error(err))
-      .finally(() => callback());
+      .finally(() => (callback ? callback() : null));
   };
 };
