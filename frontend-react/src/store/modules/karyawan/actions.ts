@@ -75,6 +75,7 @@ export const loadKaryawan = (callback?: Function, start?: Date, end?: Date) => {
 
     url += "?start=" + formatDate(getState().karyawan.filter.start);
     url += "&end=" + formatDate(getState().karyawan.filter.end);
+    url += "&offset=" + new Date().getTimezoneOffset();
 
     axios
       .get(url, { timeout: 5000 })

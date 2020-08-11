@@ -4,12 +4,16 @@ const { Op } = require("sequelize");
 
 module.exports = {
   list(req, res) {
+    const offset = parseInt(req.query.offset)
     const startDate = (toDate(req.query.start) || new Date(0)).setUTCHours(0, 0, 0, 0);
     const endDate = (toDate(req.query.end) || new Date()).setUTCHours(24, 0, 0, 0);
     return Karyawan.findAll({
       where: {
         tanggal_masuk: {
-          [Op.between]: [new Date(startDate).toISOString(),new Date(endDate).toISOString()],
+          [Op.between]: [
+            new Date(startDate + offset * 60000).toISOString(),
+            new Date(endDate + offset * 60000).toISOString(),
+          ],
         },
       },
       include: [],
