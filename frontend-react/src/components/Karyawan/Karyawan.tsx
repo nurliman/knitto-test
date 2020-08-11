@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Spinner, Row, Col, Button } from "react-bootstrap";
+import React, { useState, useEffect, useRef,useLayoutEffect } from "react";
+import { Spinner, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../store/modules/rootReducer";
@@ -8,11 +8,13 @@ import { loadKaryawan } from "../../store/modules/karyawan/actions";
 import KaryawanTable from "./KaryawanTable";
 import AddKaryawanButton from "../AddKaryawan";
 import KaryawanFilterByDate from "../KaryawanFilter";
+import KaryawanPrintButton from "../KaryawanPrint";
 
 const Karyawan: React.FC = () => {
   const dispatch = useDispatch();
   const karyawanList = useSelector((state: RootState) => state.karyawan.data);
   const [loading, setLoading] = useState(false);
+  const karyawanRef = useRef<HTMLTableElement>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -37,7 +39,7 @@ const Karyawan: React.FC = () => {
             {loading === true ? (
               <Spinner animation="border" />
             ) : karyawanList.length !== 0 ? (
-              <KaryawanTable karyawanList={karyawanList} />
+              <KaryawanTable ref={karyawanRef} karyawanList={karyawanList} />
             ) : (
               <h5>Karyawan Tidak Ditemukan</h5>
             )}
@@ -46,9 +48,10 @@ const Karyawan: React.FC = () => {
       </Row>
       <Row className="karyawan__item">
         <Col>
-          <Button className="mr-2" variant="primary">
-            Print
-          </Button>
+          <KaryawanPrintButton
+            disabled={karyawanList.length < 1}
+            karyawanRef={karyawanRef}
+          />
           <AddKaryawanButton />
         </Col>
       </Row>

@@ -13,7 +13,7 @@ const KaryawanFilterByDate: React.FC<{ setLoading: Function }> = ({
   setLoading,
 }) => {
   const [dates, setDates] = useState({
-    start: new Date(),
+    start: new Date("2020/8/1"),
     end: new Date(),
   });
 
