@@ -7,7 +7,7 @@ import {
   setFilterDate,
 } from "../../store/modules/karyawan/actions";
 
-import { formatDate } from "../../helpers";
+import { formatDate,toDate } from "../../helpers";
 
 const KaryawanFilterByDate: React.FC<{ setLoading: Function }> = ({
   setLoading,
@@ -21,6 +21,7 @@ const KaryawanFilterByDate: React.FC<{ setLoading: Function }> = ({
     setDates({
       ...dates,
       [e.target.name]: e.target.value,
+      end: toDate(e.target.value)
     });
   };
 
@@ -51,6 +52,7 @@ const KaryawanFilterByDate: React.FC<{ setLoading: Function }> = ({
         name="end"
         type="date"
         placeholder="dd-mm-yyyy"
+        min={formatDate(dates.start)}
         onChange={onChange}
         value={formatDate(dates.end)}
       />
