@@ -1,6 +1,6 @@
 FROM node:12.18-alpine
 ENV NODE_ENV production
-RUN apk update && apk add --no-cache coreutils bash
+RUN apk add --no-cache bash
 WORKDIR /usr/src/app
 COPY ["package.json", "yarn.lock", "./"]
 RUN yarn install --prod --pure-lockfile
