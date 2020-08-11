@@ -7,6 +7,7 @@ import { loadKaryawan } from "../../store/modules/karyawan/actions";
 
 import KaryawanTable from "./KaryawanTable";
 import AddKaryawanButton from "../AddKaryawan";
+import KaryawanFilterByDate from "../KaryawanFilter";
 
 const Karyawan: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,15 @@ const Karyawan: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <Container className="karyawan">
+    <div className="karyawan">
       <Row className="karyawan__item">
         <Col>
           <h1 className="karyawan__header">Karyawan</h1>
+        </Col>
+      </Row>
+      <Row className="karyawan__item">
+        <Col>
+          <KaryawanFilterByDate />
         </Col>
       </Row>
       <Row className="karyawan__item">
@@ -33,8 +39,8 @@ const Karyawan: React.FC = () => {
             ) : karyawanList.length !== 0 ? (
               <KaryawanTable karyawanList={karyawanList} />
             ) : (
-              <h5>Karyawan Tidak Ditemukan</h5>
-            )}
+                  <h5>Karyawan Tidak Ditemukan</h5>
+                )}
           </div>
         </Col>
       </Row>
@@ -44,7 +50,7 @@ const Karyawan: React.FC = () => {
           <AddKaryawanButton />
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 
