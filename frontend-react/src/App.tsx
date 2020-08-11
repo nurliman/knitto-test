@@ -4,7 +4,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Karyawan from "./components/Karyawan";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./App.scss";
 
 const App: React.FC = () => {
   return (
