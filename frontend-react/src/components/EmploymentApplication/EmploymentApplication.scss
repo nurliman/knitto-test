@@ -1,0 +1,22 @@
+.employment-application {
+  display: flex;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__container-right {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-sizing: border-box;
+    height: 100%;
+    max-width: 70%;
+    border-top-left-radius: 155px 100%;
+    border-bottom-left-radius: 155px 100%;
+    position: relative;
+    padding-left: 75px;
+    padding-right: 35px;
+  }
+}

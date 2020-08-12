@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { IKaryawan } from "../../store/modules/karyawan/types";
-import { formatDate } from "../../helpers";
+import { IKaryawan } from "../../../store/modules/karyawan/types";
+import { formatDate } from "../../../helpers";
 
 const KaryawanAddForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
   form,

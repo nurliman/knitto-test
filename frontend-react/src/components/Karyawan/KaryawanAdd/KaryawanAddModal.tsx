@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
-import { addKaryawan } from "../../store/modules/karyawan/actions";
+import { addKaryawan } from "../../../store/modules/karyawan/actions";
 
 import KaryawanAddForm from "./KaryawanAddForm";
 

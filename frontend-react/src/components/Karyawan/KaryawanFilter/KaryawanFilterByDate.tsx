@@ -2,13 +2,13 @@ import React, { useState,useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 
-import { RootState } from "../../store/modules/rootReducer";
+import { RootState } from "../../../store/modules/rootReducer";
 import {
   loadKaryawan,
   setFilterDate,
-} from "../../store/modules/karyawan/actions";
+} from "../../../store/modules/karyawan/actions";
 
-import { formatDate,toDate } from "../../helpers";
+import { formatDate,toDate } from "../../../helpers";
 
 const KaryawanFilterByDate: React.FC<{ setLoading: Function }> = ({
   setLoading,
