@@ -1,13 +1,18 @@
-import React from "react";
+import React,{useState} from "react";
 
 import { Button } from "react-bootstrap";
 
 import ToggleButton from "./ToggleButton";
 import EmploymentApplicationForm from "./EmploymentApplicationForm";
 
-import rocketIconUrl, { ReactComponent as RocketIcon } from "./rocket.svg";
+import { ReactComponent as RocketIcon } from "./rocket.svg";
+
+import { Modes } from "./types";
 
 const EmploymentApplication: React.FC = () => {
+    const [mode, setMode] = useState<Modes>("Employee");
+
+
   return (
     <div className="employment-application">
       <div className="employment-application__container-left">
@@ -32,8 +37,8 @@ const EmploymentApplication: React.FC = () => {
         </Button>
       </div>
       <div className="employment-application__container-right">
-        <ToggleButton />
-        <EmploymentApplicationForm />
+        <ToggleButton setMode={setMode} />
+        <EmploymentApplicationForm mode={mode} />
       </div>
     </div>
   );

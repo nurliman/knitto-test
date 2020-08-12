@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
-const EmploymentApplicationForm: React.FC = () => {
+import { Modes, Gender } from "../types";
+
+const EmploymentApplicationForm: React.FC<{ mode: Modes }> = ({ mode }) => {
+  const [gender, setGender] = useState<Gender>("Male");
+  const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
+    if (e.target.name === "Male"){
+      setGender("Male")
+    }else{
+      setGender("Female")
+    }
+  }
+
+
   return (
     <div className="employment-application__form">
       <Row>
         <Col>
           <h3 className="employment-application__form__title">
-            Apply as Employee
+            Apply as {mode}
           </h3>
         </Col>
       </Row>
@@ -75,15 +87,33 @@ const EmploymentApplicationForm: React.FC = () => {
           className="employment-application__form__item"
         >
           <Col>
-            <Form.Check type="radio" id="default-radio" label="Male" />
+            <Form.Check
+              type="radio"
+              id="default-radio"
+              name="Male"
+              label="Male"
+              checked={gender === "Male"}
+              onChange={handleChange}
+            />
           </Col>
           <Col>
-            <Form.Check type="radio" label="Female" id="default-radio" />
+            <Form.Check
+              type="radio"
+              name="Female"
+              label="Female"
+              id="default-radio"
+              checked={gender === "Female"}
+              onChange={handleChange}
+            />
           </Col>
         </Row>
         <Row className="employment-application__form__item">
           <Col>
-            <Button className="form__submit float-right" variant="primary" type="submit">
+            <Button
+              className="form__submit float-right"
+              variant="primary"
+              type="submit"
+            >
               Register
             </Button>
           </Col>
