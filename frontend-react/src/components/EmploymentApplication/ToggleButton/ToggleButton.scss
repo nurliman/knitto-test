@@ -51,7 +51,7 @@
 
   label {
     justify-content: flex-end;
-    
+
     .can-toggle__label-text {
       flex: 1;
     }
@@ -84,6 +84,7 @@
   $can-toggle-switch-width: $can-toggle-width/2;
 
   input[type="checkbox"] {
+      visibility: hidden;
     &:focus ~ label,
     &:hover ~ label {
       .can-toggle__switch {
@@ -235,9 +236,10 @@
 
   // Or re-brand the toggle for different applications
   &.toggle-theme-1 {
-    right: 0;
+      display: flex;
     font-weight: 600;
     letter-spacing: 0.8;
+    justify-content: flex-end;
 
     @include can-toggle-branding(
       rgb(0, 82, 175),

@@ -6,6 +6,39 @@
   align-items: center;
   justify-content: flex-end;
 
+  &__container-left {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+    color: white;
+    text-align: center;
+
+    &__button {
+      font-weight: 700 !important;
+      color: rgb(0, 82, 175) !important;
+      margin-top: 55%;
+      padding: 5px 24px !important;
+      border: 0 !important;
+      border-radius: 50px !important;
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin-bottom: 14px;
+      }
+    }
+
+    .icon {
+      &--rocket {
+        fill: white;
+        width: 88px;
+        height: 88px;
+      }
+    }
+  }
+
   &__container-right {
     display: flex;
     flex-direction: column;
@@ -33,6 +66,7 @@
       }
 
       &__submit {
+        font-weight: 600;
         padding: 5px 50px;
         border: 0;
         border-radius: 50px;

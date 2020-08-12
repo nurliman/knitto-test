@@ -12,7 +12,7 @@ const App: React.FC = () => {
     <Router>
       <div className="main-container">
         <Switch>
-          <Route path="/" exact component={EmploymentApplication} />
+          <Route path="/register" exact component={EmploymentApplication} />
           <Route path="/karyawan" component={Karyawan} />
         </Switch>
       </div>
