@@ -6,7 +6,7 @@ import { RootState } from "../../store/modules/rootReducer";
 import { loadKaryawan } from "../../store/modules/karyawan/actions";
 
 import KaryawanTable from "./KaryawanTable";
-import AddKaryawanButton from "../AddKaryawan";
+import AddKaryawanButton from "../KaryawanAdd";
 import KaryawanFilterByDate from "../KaryawanFilter";
 import KaryawanPrintButton from "../KaryawanPrint";
 
