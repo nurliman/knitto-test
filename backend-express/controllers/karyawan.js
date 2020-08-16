@@ -4,9 +4,19 @@ const { Op } = require("sequelize");
 
 module.exports = {
   list(req, res) {
-    const offset = parseInt(req.query.offset)
-    const startDate = (toDate(req.query.start) || new Date(0)).setUTCHours(0, 0, 0, 0);
-    const endDate = (toDate(req.query.end) || new Date()).setUTCHours(24, 0, 0, 0);
+    const offset = parseInt(req.query.offset);
+    const startDate = (toDate(req.query.start) || new Date(0)).setUTCHours(
+      0,
+      0,
+      0,
+      0
+    );
+    const endDate = (toDate(req.query.end) || new Date()).setUTCHours(
+      24,
+      0,
+      0,
+      0
+    );
     return Karyawan.findAll({
       where: {
         tanggal_masuk: {
@@ -76,7 +86,11 @@ module.exports = {
             message: "Karyawan tidak ditemukan",
           });
         }
-        return Karyawan.destroy()
+        return Karyawan.destroy({
+          where: {
+            id: req.params.id,
+          },
+        })
           .then(() => res.status(204).send())
           .catch((error) => res.status(400).send(error));
       })
