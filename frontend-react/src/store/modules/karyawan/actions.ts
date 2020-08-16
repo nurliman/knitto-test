@@ -6,6 +6,8 @@ import {
   CREATE_KARYAWAN,
   SET_KARYAWAN_LIST,
   SET_FILTER_DATE,
+  UPDATE_KARYAWAN,
+  DELETE_KARYAWAN,
 } from "./types";
 import axios from "axios";
 import { Dispatch, AnyAction } from "redux";
@@ -38,6 +40,33 @@ export function setFilterDate(filterDate: FilterDate): KaryawanActionsTypes {
     payload: { filterDate },
   };
 }
+
+export function updateKaryawan(karyawan: IKaryawan): KaryawanActionsTypes {
+  return {
+    type: UPDATE_KARYAWAN,
+    payload: { karyawan },
+  };
+}
+
+export function deleteKaryawan(karyawan: IKaryawan): KaryawanActionsTypes {
+  return {
+    type: DELETE_KARYAWAN,
+    payload: { karyawan },
+  };
+}
+
+export const removeKaryawan = (karyawan: IKaryawan, callback?: Function) => {
+  return (dispatch: Dispatch<AnyAction>) => {
+    let url = "http://localhost:80/api/karyawan/" + karyawan.id;
+    axios
+      .delete(url, { timeout: 5000 })
+      .then((response) => {
+        response.status === 204 && dispatch(deleteKaryawan(karyawan));
+      })
+      .catch((err) => console.log(err))
+      .finally(() => callback && callback());
+  };
+};
 
 export const addKaryawan = (karyawan: IKaryawan, callback?: Function) => {
   return (dispatch: Dispatch<AnyAction>) => {

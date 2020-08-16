@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Spinner, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,7 +14,6 @@ const Karyawan: React.FC = () => {
   const dispatch = useDispatch();
   const karyawanList = useSelector((state: RootState) => state.karyawan.data);
   const [loading, setLoading] = useState(false);
-  const karyawanRef = useRef<HTMLTableElement>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -39,7 +38,7 @@ const Karyawan: React.FC = () => {
             {loading === true ? (
               <Spinner animation="border" />
             ) : karyawanList.length !== 0 ? (
-              <KaryawanTable ref={karyawanRef} karyawanList={karyawanList} />
+              <KaryawanTable karyawanList={karyawanList} />
             ) : (
               <h5>Karyawan Tidak Ditemukan</h5>
             )}
@@ -49,8 +48,8 @@ const Karyawan: React.FC = () => {
       <Row className="karyawan__item">
         <Col>
           <KaryawanPrintButton
+            karyawanList={karyawanList}
             disabled={karyawanList.length < 1}
-            karyawanRef={karyawanRef}
           />
           <KaryawanAddButton />
         </Col>
