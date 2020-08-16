@@ -1,7 +1,7 @@
 import React, { forwardRef, useLayoutEffect } from "react";
 import { Table } from "react-bootstrap";
 
-import { KaryawanListType } from "../../store/modules/karyawan/types";
+import { KaryawanListType } from "../../../store/modules/karyawan/types";
 import KaryawanItem from "./KaryawanItem";
 
 interface KaryawanTableProps {

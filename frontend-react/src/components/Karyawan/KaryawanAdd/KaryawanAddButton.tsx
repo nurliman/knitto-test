@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
-import AddKaryawanModal from "./AddKaryawanModal";
+import KaryawanAddModal from "./KaryawanAddModal";
 
-const AddKaryawanButton: React.FC = () => {
+const KaryawanAddButton: React.FC = () => {
   const [modalShow, setModalShow] = useState(false);
 
   return (
@@ -12,9 +12,9 @@ const AddKaryawanButton: React.FC = () => {
         Tambah Karyawan
       </Button>
 
-      <AddKaryawanModal show={modalShow} onHide={() => setModalShow(false)} />
+      <KaryawanAddModal show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 };
 
-export default AddKaryawanButton;
+export default KaryawanAddButton;

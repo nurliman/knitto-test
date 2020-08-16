@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef,useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Spinner, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,9 +6,9 @@ import { RootState } from "../../store/modules/rootReducer";
 import { loadKaryawan } from "../../store/modules/karyawan/actions";
 
 import KaryawanTable from "./KaryawanTable";
-import AddKaryawanButton from "../AddKaryawan";
-import KaryawanFilterByDate from "../KaryawanFilter";
-import KaryawanPrintButton from "../KaryawanPrint";
+import KaryawanAddButton from "./KaryawanAdd";
+import KaryawanFilterByDate from "./KaryawanFilter";
+import KaryawanPrintButton from "./KaryawanPrint";
 
 const Karyawan: React.FC = () => {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const Karyawan: React.FC = () => {
             disabled={karyawanList.length < 1}
             karyawanRef={karyawanRef}
           />
-          <AddKaryawanButton />
+          <KaryawanAddButton />
         </Col>
       </Row>
     </div>

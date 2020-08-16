@@ -1,9 +1,9 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { IKaryawan } from "../../store/modules/karyawan/types";
-import { formatDate } from "../../helpers";
+import { IKaryawan } from "../../../store/modules/karyawan/types";
+import { formatDate } from "../../../helpers";
 
-const AddKaryawanForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
+const KaryawanAddForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
   form,
   setValues,
 }) => {
@@ -50,5 +50,5 @@ const AddKaryawanForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
   );
 };
 
-export default AddKaryawanForm;
+export default KaryawanAddForm;
 

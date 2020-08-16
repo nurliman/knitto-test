@@ -1,0 +1,87 @@
+.employment-application {
+  display: flex;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__container-left {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+    color: white;
+    text-align: center;
+
+    &__button {
+      font-weight: 700 !important;
+      color: rgb(0, 82, 175) !important;
+      margin-top: 55%;
+      padding: 5px 24px !important;
+      border: 0 !important;
+      border-radius: 50px !important;
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin-bottom: 14px;
+      }
+    }
+
+    .icon {
+      &--rocket {
+        fill: white;
+        width: 88px;
+        height: 88px;
+      }
+    }
+  }
+
+  &__container-right {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-sizing: border-box;
+    height: 100%;
+    width: 70%;
+    border-top-left-radius: 155px 100%;
+    border-bottom-left-radius: 155px 100%;
+    position: relative;
+    padding-left: 75px;
+    padding-right: 35px;
+    padding-top: 20px;
+  }
+
+  &__form {
+    text-align: center;
+    padding: 0 5%;
+
+    .form {
+      &__input {
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+
+      &__submit {
+        font-weight: 600;
+        padding: 5px 50px;
+        border: 0;
+        border-radius: 50px;
+        background-color: rgb(0, 82, 175);
+      }
+    }
+
+    &__title {
+      margin-bottom: 38px;
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

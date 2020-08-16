@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 import Karyawan from "./components/Karyawan";
+import EmploymentApplication from "./components/EmploymentApplication";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
@@ -11,9 +12,7 @@ const App: React.FC = () => {
     <Router>
       <div className="main-container">
         <Switch>
-          <Route path="/" exact>
-            <h4>Home</h4>
-          </Route>
+          <Route path="/register" exact component={EmploymentApplication} />
           <Route path="/karyawan" component={Karyawan} />
         </Switch>
       </div>

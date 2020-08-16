@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Modal, Button, Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
-import { addKaryawan } from "../../store/modules/karyawan/actions";
+import { addKaryawan } from "../../../store/modules/karyawan/actions";
 
-import AddKaryawanForm from "./AddKaryawanForm";
+import KaryawanAddForm from "./KaryawanAddForm";
 
-const AddKaryawanModal: React.FC<{ onHide: Function; show: boolean }> = (
+const KaryawanAddModal: React.FC<{ onHide: Function; show: boolean }> = (
   props
 ) => {
   const [loading, setLoading] = useState(false);
@@ -49,7 +49,7 @@ const AddKaryawanModal: React.FC<{ onHide: Function; show: boolean }> = (
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <AddKaryawanForm form={form} setValues={setValues} />
+        <KaryawanAddForm form={form} setValues={setValues} />
       </Modal.Body>
       <Modal.Footer>
         <Button variant="danger" onClick={() => props.onHide()}>
@@ -73,4 +73,4 @@ const AddKaryawanModal: React.FC<{ onHide: Function; show: boolean }> = (
   );
 };
 
-export default AddKaryawanModal;
+export default KaryawanAddModal;

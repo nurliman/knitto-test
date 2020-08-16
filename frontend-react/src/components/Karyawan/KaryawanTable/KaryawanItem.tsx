@@ -1,5 +1,5 @@
 import React from "react";
-import { IKaryawan } from "../../store/modules/karyawan/types";
+import { IKaryawan } from "../../../store/modules/karyawan/types";
 
 const KaryawanItem: React.FC<{ karyawan: IKaryawan }> = ({ karyawan }) => {
   return (
