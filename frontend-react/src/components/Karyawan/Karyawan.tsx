@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../store/modules/rootReducer";
 import { loadKaryawan } from "../../store/modules/karyawan/actions";
+import { ADD_MODE } from "./KaryawanAddEdit/types";
 
 import KaryawanTable from "./KaryawanTable";
-import KaryawanAddButton from "./KaryawanAdd";
+import KaryawanAddEditButton from "./KaryawanAddEdit";
 import KaryawanFilterByDate from "./KaryawanFilter";
 import KaryawanPrintButton from "./KaryawanPrint";
 
@@ -51,7 +52,12 @@ const Karyawan: React.FC = () => {
             karyawanList={karyawanList}
             disabled={karyawanList.length < 1}
           />
-          <KaryawanAddButton />
+          <KaryawanAddEditButton
+            mode={{ type: ADD_MODE, payload: {} }}
+            title="Tambah Karyawan"
+          >
+            Tambah Karyawan
+          </KaryawanAddEditButton>
         </Col>
       </Row>
     </div>

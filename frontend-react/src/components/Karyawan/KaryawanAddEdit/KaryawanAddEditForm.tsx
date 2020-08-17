@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { IKaryawan } from "../../../store/modules/karyawan/types";
 import { formatDate } from "../../../helpers";
 
-const KaryawanAddForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
+const KaryawanAddEditForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
   form,
   setValues,
 }) => {
@@ -50,5 +50,5 @@ const KaryawanAddForm: React.FC<{ form: IKaryawan; setValues: Function }> = ({
   );
 };
 
-export default KaryawanAddForm;
+export default KaryawanAddEditForm;
 

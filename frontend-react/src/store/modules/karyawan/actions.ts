@@ -3,8 +3,8 @@ import {
   KaryawanActionsTypes,
   KaryawanListType,
   IKaryawan,
-  CREATE_KARYAWAN,
   SET_KARYAWAN_LIST,
+  CREATE_KARYAWAN,
   SET_FILTER_DATE,
   UPDATE_KARYAWAN,
   DELETE_KARYAWAN,
@@ -55,9 +55,30 @@ export function deleteKaryawan(karyawan: IKaryawan): KaryawanActionsTypes {
   };
 }
 
+export const editKaryawan = (karyawan: IKaryawan, callback?: Function) => {
+  return (dispatch: Dispatch<AnyAction>) => {
+    let url = "http://localhost/api/karyawan/" + karyawan.id;
+    axios
+      .put(
+        url,
+        {
+          nama: karyawan.nama,
+          jabatan: karyawan.jabatan,
+          tanggal_masuk: karyawan.tanggal_masuk,
+        },
+        { timeout: 5000 }
+      )
+      .then((response) => {
+        response.status === 200 && dispatch(updateKaryawan(karyawan));
+      })
+      .catch((err) => console.log(err))
+      .finally(() => callback && callback());
+  };
+};
+
 export const removeKaryawan = (karyawan: IKaryawan, callback?: Function) => {
   return (dispatch: Dispatch<AnyAction>) => {
-    let url = "http://localhost:80/api/karyawan/" + karyawan.id;
+    let url = "http://localhost/api/karyawan/" + karyawan.id;
     axios
       .delete(url, { timeout: 5000 })
       .then((response) => {

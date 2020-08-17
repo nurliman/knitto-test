@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import { IKaryawan } from "../../../store/modules/karyawan/types";
 import { removeKaryawan } from "../../../store/modules/karyawan/actions";
 
+import KaryawanAddEditButton from "../KaryawanAddEdit";
+import { EDIT_MODE } from "../KaryawanAddEdit/types";
+
 const KaryawanItem: React.FC<{ karyawan: IKaryawan; print?: boolean }> = ({
   karyawan,
   print,
@@ -33,7 +36,12 @@ const KaryawanItem: React.FC<{ karyawan: IKaryawan; print?: boolean }> = ({
             }}
           >
             <ButtonGroup aria-label="Basic example" style={{ margin: 5 }}>
-              <Button variant="primary">Edit</Button>
+              <KaryawanAddEditButton
+                mode={{ type: EDIT_MODE, payload: { karyawan } }}
+                title="Edit Karyawan"
+              >
+                Edit
+              </KaryawanAddEditButton>
               <Button onClick={deleteHandler} variant="danger">
                 {deleteLoading ? (
                   <Spinner
