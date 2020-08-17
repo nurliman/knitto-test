@@ -1,10 +1,57 @@
 version: '3.4'
 
 services:
-  knitto-test:
-    image: knitto-test
-    build: .
+  backend-express:
+    container_name: backend-express
+    image: backend-express
+    build: 
+      context: ./backend-express
     environment:
       NODE_ENV: production
+      DATABASE_URL: "mysql://admin:password@db:3306/knitto"
     ports:
-      - 3000
+      - "3000"
+      - "9229:9229"
+    ## set your startup file here
+    networks:
+      - primary
+    depends_on:
+      - db
+    command: sh -c "./wait-for-it.sh db:3306 --timeout=0 -- yarn start"
+
+  db:
+    container_name: db
+    image: percona:8.0
+    restart: always
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: knitto
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+    networks:
+      - primary
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - "8080"
+    networks:
+      - primary
+
+
+  frontend-react:
+    container_name: frontend-react
+    build: 
+      context: ./frontend-react
+    networks:
+      - primary
+    depends_on:
+      - "backend-express"
+      - adminer
+    ports:
+      - "80:80"
+
+networks: 
+  primary:

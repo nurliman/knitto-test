@@ -7,7 +7,7 @@ services:
     build: 
       context: ./backend-express
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       DATABASE_URL: "mysql://admin:password@db:3306/knitto"
     ports:
       - "3000"
